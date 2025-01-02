@@ -1,8 +1,8 @@
-package com.example.PSM01.Service;
+package com.example.PSM01.Role.Service;
 
 
-import com.example.PSM01.Model.Role;
-import com.example.PSM01.Repository.IRole;
+import com.example.PSM01.Role.Model.Role;
+import com.example.PSM01.Role.Repository.IRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

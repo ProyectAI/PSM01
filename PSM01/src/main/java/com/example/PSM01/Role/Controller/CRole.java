@@ -1,7 +1,7 @@
-package com.example.PSM01.Controller;
+package com.example.PSM01.Role.Controller;
 
-import com.example.PSM01.Model.Role;
-import com.example.PSM01.Service.SRole;
+import com.example.PSM01.Role.Service.SRole;
+import com.example.PSM01.Role.Model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

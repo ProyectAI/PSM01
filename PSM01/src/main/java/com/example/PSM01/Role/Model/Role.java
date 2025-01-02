@@ -1,7 +1,8 @@
-package com.example.PSM01.Model;
+package com.example.PSM01.Role.Model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.example.PSM01.DTO.EmployeeDto.RoleDto.DtoRole;
+import com.example.PSM01.Employee.Model.Employee;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class Role {
     @Column(name = "name_role", unique = true)
     private String nameRole;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Employee> employee;
 
@@ -32,6 +33,12 @@ public class Role {
 
     public Role() {
     }
+
+    public Role(DtoRole role) {
+        this.nameRole= role.nameRole();
+    }
+
+
 
     //Getter and Setter
 
@@ -67,5 +74,11 @@ public class Role {
                 ", nameRole='" + nameRole + '\'' +
                 ", employee=" + employee +
                 '}';
+    }
+
+
+    public Role updateDatos(DtoRole role) {
+        this.nameRole=role.nameRole();
+        return this;
     }
 }

@@ -1,12 +1,17 @@
-package com.example.PSM01.Model;
+package com.example.PSM01.Employee.Model;
 
 
+import com.example.PSM01.DTO.EmployeeDto.DtoEmployee;
+import com.example.PSM01.DTO.EmployeeDto.DtoUpdateEmployee;
+import com.example.PSM01.Role.Model.Role;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "employee")
 public class Employee {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +29,16 @@ public class Employee {
 
     //Empty constructor
 
+
     public Employee() {
+    }
+
+    public Employee(DtoEmployee dtoEmployee) {
+        this.nameEmployee= dtoEmployee.nameEmployee();
+        this.phone= dtoEmployee.phone();
+        this.email= dtoEmployee.email();
+        this.role= new Role(dtoEmployee.role());
+
     }
 
     //Getter and Setter
@@ -66,6 +80,22 @@ public class Employee {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void updateDatos(DtoUpdateEmployee dtoUpdateEmployee) {
+        if (dtoUpdateEmployee.nameEmployee() != null) {
+            this.nameEmployee = dtoUpdateEmployee.nameEmployee();
+        }
+        if (dtoUpdateEmployee.phone() !=0 ){
+            this.phone = dtoUpdateEmployee.phone();
+        }
+        if (dtoUpdateEmployee.email() != null) {
+            this.email = dtoUpdateEmployee.email();
+        }
+        if (dtoUpdateEmployee.role() != null) {
+            this.role = role.updateDatos(dtoUpdateEmployee.role());
+        }
+
     }
 
 }
